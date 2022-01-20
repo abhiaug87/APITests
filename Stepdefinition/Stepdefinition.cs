@@ -11,17 +11,12 @@ namespace Testing.Stepdefinition
     {
         JSON read = new JSON();
 
-        [Given(@"I have access to the URL for categories")]
-        public void GivenIHaveAccessToTheURLForCategories()
+        [When(@"I pass headers for (.*) and (.*)")]
+        public void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
         {
-            Url();
+            parameters(content, status);
         }
 
-        [When(@"I pass headers (.*), (.*), (.*), (.*), (.*) and (.*)")]
-        public void WhenIPassHeadersAnd(string content, string corr, string reqid, string token, string encoding, string conn)
-        {
-            parameters(content, corr, reqid, token, encoding, conn);
-        }
 
         [Then(@"I am able to see the category name with headers (.*)")]
         public void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content)
@@ -57,5 +52,5 @@ namespace Testing.Stepdefinition
             string desc = result[read.jr("TestData.json", "AC3")][1][read.jr("TestData.json", "V3")].Value<string>();
             Assert.IsTrue(desc.Equals(read.jr("TestData.json", "V4")), "The values does not match as expected", desc);
         }
-        }
     }
+}

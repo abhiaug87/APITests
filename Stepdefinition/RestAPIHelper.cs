@@ -14,22 +14,12 @@ namespace Testing.Stepdefinition
         public RestClient rc;
         public RestRequest rq;
 
-        public RestClient Url()
-        {
-            var url = read.jr("TestData.json", "url");
-            return rc = new RestClient(url);
-        }
-
-        public RestRequest parameters(string content, string corr, string reqid, string token, string encoding, string conn)
+        public RestRequest parameters(string content, string status)
         {
             rc = new RestClient(read.jr("TestData.json", "url"));
             rq = new RestRequest(read.jr("TestData.json", "endpoint"), Method.GET);
             rq.AddHeader("Content-Type", content);
-            rq.AddParameter(new Parameter("X-Correlation-ID", corr, ParameterType.GetOrPost));
-            rq.AddParameter(new Parameter("X-Request-ID", reqid, ParameterType.GetOrPost));
-            rq.AddParameter(new Parameter("Postman-Token", token, ParameterType.GetOrPost));
-            rq.AddParameter(new Parameter("Content-Encoding", encoding, ParameterType.GetOrPost));
-            rq.AddParameter(new Parameter("Connection", conn, ParameterType.GetOrPost));
+            rq.AddParameter(new Parameter("catalogue",status, ParameterType.GetOrPost));
             return rq;
         }
 

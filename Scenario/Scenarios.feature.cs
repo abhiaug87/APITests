@@ -72,8 +72,8 @@ namespace APITests.Scenario
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Display Category Name of the API")]
         [NUnit.Framework.CategoryAttribute("AC1")]
-        [NUnit.Framework.TestCaseAttribute("application/json", "6eca3cbd-479c-4304-b272-619300dc99a2", "f1d45b16-405f-4060-add4-8a1256b2f765", "93cd9499-8404-4a26-8dc9-7bbd7c91877c", "gzip", "Keep-Alive", null)]
-        public virtual void DisplayCategoryNameOfTheAPI(string content, string corr, string reqid, string token, string encoding, string conn, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("application/json", "false", null)]
+        public virtual void DisplayCategoryNameOfTheAPI(string content, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "AC1"};
@@ -86,10 +86,8 @@ namespace APITests.Scenario
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 5
- testRunner.Given("I have access to the URL for categories", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.When(string.Format("I pass headers {0}, {1}, {2}, {3}, {4} and {5}", content, corr, reqid, token, encoding, conn), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
  testRunner.Then(string.Format("I am able to see the category name with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -98,8 +96,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Display CanRelist in API Body")]
         [NUnit.Framework.CategoryAttribute("AC2")]
-        [NUnit.Framework.TestCaseAttribute("application/json", "6eca3cbd-479c-4304-b272-619300dc99a2", "f1d45b16-405f-4060-add4-8a1256b2f765", "93cd9499-8404-4a26-8dc9-7bbd7c91877c", "gzip", "Keep-Alive", null)]
-        public virtual void DisplayCanRelistInAPIBody(string content, string corr, string reqid, string token, string encoding, string conn, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("application/json", "false", null)]
+        public virtual void DisplayCanRelistInAPIBody(string content, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "AC2"};
@@ -108,14 +106,12 @@ this.ScenarioInitialize(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display CanRelist in API Body", null, @__tags);
-#line 13
+#line 12
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 13
+ testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Given("I have access to the URL for categories", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
- testRunner.When(string.Format("I pass headers {0}, {1}, {2}, {3}, {4} and {5}", content, corr, reqid, token, encoding, conn), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
  testRunner.Then(string.Format("I am able to see the canrelist status with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -124,8 +120,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Display Promotions Name in the API Body")]
         [NUnit.Framework.CategoryAttribute("AC3")]
-        [NUnit.Framework.TestCaseAttribute("application/json", "6eca3cbd-479c-4304-b272-619300dc99a2", "f1d45b16-405f-4060-add4-8a1256b2f765", "93cd9499-8404-4a26-8dc9-7bbd7c91877c", "gzip", "Keep-Alive", null)]
-        public virtual void DisplayPromotionsNameInTheAPIBody(string content, string corr, string reqid, string token, string encoding, string conn, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("application/json", "false", null)]
+        public virtual void DisplayPromotionsNameInTheAPIBody(string content, string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "AC3"};
@@ -134,14 +130,12 @@ this.ScenarioInitialize(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display Promotions Name in the API Body", null, @__tags);
-#line 22
+#line 20
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 23
- testRunner.Given("I have access to the URL for categories", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
- testRunner.When(string.Format("I pass headers {0}, {1}, {2}, {3}, {4} and {5}", content, corr, reqid, token, encoding, conn), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 21
+ testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
  testRunner.Then(string.Format("I am able to see the promotions name with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
