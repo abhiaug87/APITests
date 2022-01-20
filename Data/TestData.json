@@ -1,0 +1,13 @@
+{
+  "url": "https://api.tmsandbox.co.nz/",
+  "header": "Content-Type",
+  "endpoint": "v1/Categories/6327/Details.json",
+  "AC1": "Name",
+  "V1": "Carbon credits",
+  "AC2": "CanRelist",
+  "V2": "True",
+  "AC3": "Promotions",
+  "V3": "Description",
+  "gallery": "Gallery",
+  "V4": "Good position in category"
+}

@@ -1,0 +1,61 @@
+﻿using System.Net;
+using TechTalk.SpecFlow;
+using NUnit.Framework;
+using Newtonsoft.Json.Linq;
+using Testing.Data;
+
+namespace Testing.Stepdefinition
+{
+    [Binding]
+    public class Stepdefinition : RestAPIHelper
+    {
+        JSON read = new JSON();
+
+        [Given(@"I have access to the URL for categories")]
+        public void GivenIHaveAccessToTheURLForCategories()
+        {
+            Url();
+        }
+
+        [When(@"I pass headers (.*), (.*), (.*), (.*), (.*) and (.*)")]
+        public void WhenIPassHeadersAnd(string content, string corr, string reqid, string token, string encoding, string conn)
+        {
+            parameters(content, corr, reqid, token, encoding, conn);
+        }
+
+        [Then(@"I am able to see the category name with headers (.*)")]
+        public void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content)
+        {
+            var response = GetResponse();
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
+            Assert.That(response.ContentType, Is.EqualTo(content));
+            JObject result = JObject.Parse(response.Content);
+            string value = result[read.jr("TestData.json", "AC1")].Value<string>();
+            Assert.AreEqual(read.jr("TestData.json", "V1"), value, "The value is not as expected");
+        }
+
+        [Then(@"I am able to see the canrelist status with headers (.*)")]
+        public void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content)
+        {
+            var response = GetResponse();
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
+            Assert.That(response.ContentType, Is.EqualTo(content));
+            JObject result = JObject.Parse(response.Content);
+            string value = result[read.jr("TestData.json", "AC2")].Value<string>();
+            Assert.AreEqual(read.jr("TestData.json", "V2"), value, "The value is not as expected");
+        }
+
+        [Then(@"I am able to see the promotions name with headers (.*)")]
+        public void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content)
+        {
+            var response = GetResponse();
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
+            Assert.That(response.ContentType, Is.EqualTo(content));
+            JObject result = JObject.Parse(response.Content);
+            string value = result[read.jr("TestData.json", "AC3")][1][read.jr("TestData.json", "AC1")].Value<string>();
+            Assert.AreEqual(read.jr("TestData.json", "gallery"), value, "The value is not as expected");
+            string desc = result[read.jr("TestData.json", "AC3")][1][read.jr("TestData.json", "V3")].Value<string>();
+            Assert.IsTrue(desc.Equals(read.jr("TestData.json", "V4")), "The values does not match as expected", desc);
+        }
+        }
+    }
