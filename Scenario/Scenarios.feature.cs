@@ -88,7 +88,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
  testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.Then(string.Format("I am able to see the category name with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I am able to see the category name with headers {0} and {1}", content, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Then(string.Format("I am able to see the canrelist status with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I am able to see the canrelist status with headers {0} and {1}", content, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -136,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 21
  testRunner.When(string.Format("I pass headers for {0} and {1}", status, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
- testRunner.Then(string.Format("I am able to see the promotions name with headers {0}", content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I am able to see the promotions name with headers {0} and {1}", content, status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
