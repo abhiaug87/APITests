@@ -22,9 +22,8 @@ namespace Testing.Stepdefinition
             rq = new RestRequest(read.jr("TestData.json", "endpoint"), Method.GET);
             rq.AddHeader("Content-Type", content);
             rq.AddParameter(new Parameter("catalogue",status, ParameterType.GetOrPost));
-            var response = rc.Execute(rq);
-            lastResponse = response;
-            return response;
+            lastResponse = rc.Execute(rq);
+            return lastResponse;
         }
 
         [AfterScenario]
