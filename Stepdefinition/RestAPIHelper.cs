@@ -12,14 +12,14 @@ namespace Testing.Stepdefinition
     public class RestAPIHelper
     {
         readonly string currentDirectory = Directory.GetParent(NUnit.Framework.TestContext.CurrentContext.TestDirectory).Parent.FullName;
-        JSON read = new JSON();
+        readonly JSON read = new JSON();
         public RestClient rc;
         public RestRequest rq;
         public IRestResponse lastResponse;
         public IRestResponse Parameters(string content, string status)
         {
-            rc = new RestClient(read.jr("TestData.json", "url"));
-            rq = new RestRequest(read.jr("TestData.json", "endpoint"), Method.GET);
+            rc = new RestClient(read.JR("TestData.json", "url"));
+            rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.GET);
             rq.AddHeader("Content-Type", content);
             rq.AddParameter(new Parameter("catalogue",status, ParameterType.GetOrPost));
             lastResponse = rc.Execute(rq);

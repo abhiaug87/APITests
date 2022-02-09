@@ -7,7 +7,7 @@ namespace Testing.Data
     public class JSON
     {
 
-        public string jr(string fileName, object itemName)
+        public string JR(string fileName, object itemName)
         {
             string reportPath = NUnit.Framework.TestContext.CurrentContext.TestDirectory + "//Data//" + fileName;
 
@@ -19,7 +19,7 @@ namespace Testing.Data
                 JObject o2 = (JObject)JToken.ReadFrom(reader);
 
                 dynamic fileContents = JArray.Parse("[" + o2.ToString() + "]");
-                dynamic fileContent = fileContents[0];
+                _ = fileContents[0];
                 var value = o2[itemName].ToString();
                 return value;
             }
