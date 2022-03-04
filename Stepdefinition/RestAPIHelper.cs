@@ -5,17 +5,25 @@ using System.IO;
 using System.Linq;
 using TechTalk.SpecFlow;
 using Testing.Data;
+using NUnit.Framework;
 
 namespace Testing.Stepdefinition
 {
 
     public class RestAPIHelper
     {
-        readonly string currentDirectory = Directory.GetParent(NUnit.Framework.TestContext.CurrentContext.TestDirectory).Parent.FullName;
-        readonly JSON read = new JSON();
+        private readonly string currentDirectory;
+        private readonly JSON read;
         public RestClient rc;
         public RestRequest rq;
         public IRestResponse lastResponse;
+
+        public RestAPIHelper()
+
+        {
+            currentDirectory = Directory.GetParent(TestContext.CurrentContext.TestDirectory).Parent.FullName;
+            read = new JSON();
+        }
         public IRestResponse Parameters(string content, string status)
         {
             rc = new RestClient(read.JR("TestData.json", "url"));
@@ -29,7 +37,7 @@ namespace Testing.Stepdefinition
         [AfterScenario]
         public void FailedTestScenario()
         {
-            if (NUnit.Framework.TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
 
                 var dir = $@"{currentDirectory}/Logs";

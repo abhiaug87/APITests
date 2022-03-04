@@ -9,7 +9,12 @@ namespace Testing.Stepdefinition
     [Binding]
     public class Stepdefinition : RestAPIHelper
     {
-        readonly JSON read = new JSON();
+       private readonly JSON read;
+
+        public Stepdefinition()
+        {
+            read = new JSON();
+        }
 
         [When(@"I pass headers for (.*) and (.*)")]
         public void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
