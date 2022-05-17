@@ -17,16 +17,17 @@ namespace Testing.Stepdefinition
         }
 
         [When(@"I pass headers for (.*) and (.*)")]
-        public void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
+        public async void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
         {
-            Parameters(content, status);
+           await Parameters(content, status);
         }
 
 
         [Then(@"I am able to see the category name with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
+        public async void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
         {
-            var response = Parameters(content, status);
+            var response = await Parameters(content, status);
+            Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));
             JObject result = JObject.Parse(response.Content);
@@ -35,9 +36,10 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the canrelist status with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
+        public async void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
         {
-            var response = Parameters(content, status);
+            var response = await Parameters(content, status);
+            Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));
             JObject result = JObject.Parse(response.Content);
@@ -46,9 +48,10 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the promotions name with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
+        public async void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
         {
-            var response = Parameters(content, status);
+            var response = await Parameters(content, status);
+            Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));
             JObject result = JObject.Parse(response.Content);

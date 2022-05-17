@@ -6,6 +6,7 @@ using System.Linq;
 using TechTalk.SpecFlow;
 using Testing.Data;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Testing.Stepdefinition
 {
@@ -16,7 +17,7 @@ namespace Testing.Stepdefinition
         private readonly JSON read;
         public RestClient rc;
         public RestRequest rq;
-        public IRestResponse lastResponse;
+        public RestResponse lastResponse;
 
         public RestAPIHelper()
 
@@ -24,13 +25,13 @@ namespace Testing.Stepdefinition
             currentDirectory = Directory.GetParent(TestContext.CurrentContext.TestDirectory).Parent.FullName;
             read = new JSON();
         }
-        public IRestResponse Parameters(string content, string status)
+        public async Task<RestResponse> Parameters(string content, string status)
         {
             rc = new RestClient(read.JR("TestData.json", "url"));
-            rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.GET);
+            rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.Get);
             rq.AddHeader("Content-Type", content);
-            rq.AddParameter(new Parameter("catalogue",status, ParameterType.GetOrPost));
-            lastResponse = rc.Execute(rq);
+            rq.AddParameter("catalogue", status, ParameterType.RequestBody);
+            lastResponse = await rc.ExecuteAsync(rq);
             return lastResponse;
         }
 
