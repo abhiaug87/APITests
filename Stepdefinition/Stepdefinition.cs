@@ -17,16 +17,16 @@ namespace Testing.Stepdefinition
         }
 
         [When(@"I pass headers for (.*) and (.*)")]
-        public async void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
+        public void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
         {
-           await Parameters(content, status);
+           Parameters(content, status);
         }
 
 
         [Then(@"I am able to see the category name with headers (.*) and (.*)")]
-        public async void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
+        public void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
         {
-            var response = await Parameters(content, status);
+            var response = Parameters(content, status);
             Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));
@@ -36,9 +36,9 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the canrelist status with headers (.*) and (.*)")]
-        public async void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
+        public void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
         {
-            var response = await Parameters(content, status);
+            var response = Parameters(content, status);
             Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));
@@ -48,9 +48,9 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the promotions name with headers (.*) and (.*)")]
-        public async void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
+        public void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
         {
-            var response = await Parameters(content, status);
+            var response = Parameters(content, status);
             Assert.That(response.IsSuccessful, "The response has failed");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
             Assert.That(response.ContentType, Is.EqualTo(content));

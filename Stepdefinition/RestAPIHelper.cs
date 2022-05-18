@@ -25,14 +25,18 @@ namespace Testing.Stepdefinition
             currentDirectory = Directory.GetParent(TestContext.CurrentContext.TestDirectory).Parent.FullName;
             read = new JSON();
         }
-        public async Task<RestResponse> Parameters(string content, string status)
+        public RestResponse Parameters(string content, string status)
         {
             rc = new RestClient(read.JR("TestData.json", "url"));
-            rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.Get);
+            rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.GET);
             rq.AddHeader("Content-Type", content);
-            rq.AddParameter("catalogue", status, ParameterType.RequestBody);
-            lastResponse = await rc.ExecuteAsync(rq);
-            return lastResponse;
+            rq.AddParameter("catalogue", status, ParameterType.GetOrPost);
+            lastResponse = (RestResponse)rc.Execute(rq);
+            using (var writer = new StreamWriter(Path.Combine(Path.GetTempPath(), "output.txt")))
+            {
+                writer.Write(lastResponse.Content.ToString());
+            }
+                return lastResponse;
         }
 
         [AfterScenario]
