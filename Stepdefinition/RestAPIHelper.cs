@@ -30,10 +30,11 @@ namespace Testing.Stepdefinition
             rc = new RestClient(read.JR("TestData.json", "url"));
             rq = new RestRequest(read.JR("TestData.json", "endpoint"), Method.GET);
             rq.AddHeader("Content-Type", content);
-            rq.AddParameter("catalogue", status, ParameterType.GetOrPost);
+            rq.AddHeader("catalogue", status);
             lastResponse = (RestResponse)rc.Execute(rq);
             using (var writer = new StreamWriter(Path.Combine(Path.GetTempPath(), "output.txt")))
             {
+                writer.WriteLine(lastResponse.StatusCode.ToString());
                 writer.Write(lastResponse.Content.ToString());
             }
                 return lastResponse;
