@@ -37,7 +37,6 @@ namespace Testing.Stepdefinition
                 string pathfile = Path.Combine(currentDirectory + @"//Logs", "Error" + "_" + DateTime.Now.ToString("(dd_MMMM_hh_mm_ss_ffffff_tt).TXT"));
                 using (var writer = new StreamWriter(pathfile))
                 {
-                    writer.WriteLine("Correlation:" + lastResponse.Headers.Where(x => x.Name == "Xero-Correlation-Id").Select(x => x.Value).FirstOrDefault());
                     writer.Write(lastResponse.Content.ToString());
                 }
             }
