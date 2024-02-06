@@ -4,19 +4,23 @@ using System;
 using System.IO;
 using System.Linq;
 using TechTalk.SpecFlow;
-using Testing.Data;
+using APITests.Data;
 
-namespace Testing.Stepdefinition
+namespace APITests.Stepdefinition
 {
 
-    public class RestAPIHelper
+    internal class RestAPIHelper
     {
-        readonly string currentDirectory = Directory.GetParent(NUnit.Framework.TestContext.CurrentContext.TestDirectory).Parent.FullName;
-        JSON read = new JSON();
-        public RestClient rc;
-        public RestRequest rq;
-        public IRestResponse lastResponse;
-        public IRestResponse Parameters(string content, string status)
+        private readonly string currentDirectory = Directory.GetParent(NUnit.Framework.TestContext.CurrentContext.TestDirectory).Parent.FullName;
+        private readonly JSON read;
+        private RestClient rc;
+        private RestRequest rq;
+        private IRestResponse lastResponse;
+        public RestAPIHelper()
+        {
+            read = new JSON();
+        }
+        private protected IRestResponse Parameters(string content, string status)
         {
             rc = new RestClient(read.jr("TestData.json", "url"));
             rq = new RestRequest(read.jr("TestData.json", "endpoint"), Method.GET);
@@ -27,7 +31,7 @@ namespace Testing.Stepdefinition
         }
 
         [AfterScenario]
-        public void FailedTestScenario()
+        private protected void FailedTestScenario()
         {
             if (NUnit.Framework.TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {

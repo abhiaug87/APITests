@@ -2,12 +2,12 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Testing.Data
+namespace APITests.Data
 {
-    public class JSON
+    internal class JSON
     {
 
-        public string jr(string fileName, object itemName)
+        protected internal string jr(string fileName, object itemName)
         {
             string reportPath = NUnit.Framework.TestContext.CurrentContext.TestDirectory + "//Data//" + fileName;
 

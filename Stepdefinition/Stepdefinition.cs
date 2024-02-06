@@ -2,24 +2,28 @@
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using Testing.Data;
+using APITests.Data;
 
-namespace Testing.Stepdefinition
+namespace APITests.Stepdefinition
 {
     [Binding]
-    public class Stepdefinition : RestAPIHelper
+    internal class Stepdefinition : RestAPIHelper
     {
-        JSON read = new JSON();
+        private readonly JSON read;
+        public Stepdefinition() {
+            read = new JSON();
+        }
+        
 
         [When(@"I pass headers for (.*) and (.*)")]
-        public void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
+        private void WhenIPassHeadersForFalseAndApplicationJson(string content, string status)
         {
             Parameters(content, status);
         }
 
 
         [Then(@"I am able to see the category name with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
+        private void ThenIAmAbleToSeeTheCategoryNameWithHeadersAnd(string content, string status)
         {
             var response = Parameters(content, status);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
@@ -30,7 +34,7 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the canrelist status with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
+        private void ThenIAmAbleToSeeTheCanrelistStatusWithHeadersAnd(string content, string status)
         {
             var response = Parameters(content, status);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
@@ -41,7 +45,7 @@ namespace Testing.Stepdefinition
         }
 
         [Then(@"I am able to see the promotions name with headers (.*) and (.*)")]
-        public void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
+        private void ThenIAmAbleToSeeThePromotionsNameWithHeadersAnd(string content, string status)
         {
             var response = Parameters(content, status);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "The response has failed");
