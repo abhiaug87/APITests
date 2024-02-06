@@ -41,6 +41,53 @@ namespace APITests.Utilities
             scenario = feature.CreateNode<ScenarioOutline>(scenarioContext.ScenarioInfo.Title);
         }
 
+        [AfterStep]
+        public void AfterStep(ScenarioContext context)
+        {
+            var step = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
+
+            if (ScenarioContext.Current.TestError == null)
+            {
+
+                if (step == "Given")
+                {
+                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
+                }
+                else if (step == "When")
+                {
+                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
+                }
+                else if (step == "Then")
+                {
+                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
+                }
+                else
+                {
+                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
+                }
+            }
+            else
+
+            {
+                if (step == "Given")
+                {
+                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                }
+                else if (step == "When")
+                {
+                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                }
+                else if (step == "Then")
+                {
+                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                }
+                else
+                {
+                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                }
+            }
+        }
+
         [AfterScenario]
         private void AfterScenario()
         {
